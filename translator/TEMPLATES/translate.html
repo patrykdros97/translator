@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Translate APP</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <style>
+        p{font-size: 20px}
+        h1{text-align: center;
+           font-style: italic;}
+
+    </style>
+    <body>
+        <div class="container">
+            <h1 class="mt-5 mb-5">Your place to translate text</h1>
+            <form method="POST" action="."> {% csrf_token %}
+                <div class="form-row mt-4">
+                    <div class="col-sm">
+                        <textarea type="text" name="txt" class="form-control" placeholder="Enter Your Text" rows="5" required="required"></textarea>
+                    </div>
+                    <div class="col-sm">
+                        <select name="lang" id="inputState" class="form-control">
+                            <option selected value="en">English</option>
+                            {% for key, value in lang_list.items %}
+                                <option value="{{key}}">{{value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+               </div>
+               <button type="submit", class="btn btn-primary mt-2">Translate</button>
+            </form>
+            <div id="table" class="form-row mt-4">
+                <table border=1 style="width: 100%">
+                    <tbody>
+                        <tr>
+                            <td>{{to_translate}}</td>
+                            <td>{{result}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
