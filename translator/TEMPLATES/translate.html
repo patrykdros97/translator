@@ -1,18 +1,43 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
     <head>
         <title>Translate APP</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
-    <style>
+    <style type="text/css">
         p{font-size: 20px}
+
         h1{text-align: center;
            font-style: italic;}
 
+        form{
+            margin-bottom: 15px;
+        }
+
+        table, tr, td{
+            margin-left: auto;
+            margin-right: auto;
+            border: 3px double gray;
+        }
+
+        td:empty, tr:empty{
+            display: none;
+        }
+
+        .put_foto{
+            background-image: url('{% static "./img/E_Translating_Wikipedia.png" %}');
+            height: 400px;
+            background-position: center; 
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        
     </style>
     <body>
         <div class="container">
-            <h1 class="mt-5 mb-5">Your place to translate text</h1>
+            <div class="put_foto"></div>
             <form method="POST" action="."> {% csrf_token %}
                 <div class="form-row mt-4">
                     <div class="col-sm">
@@ -29,16 +54,12 @@
                </div>
                <button type="submit", class="btn btn-primary mt-2">Translate</button>
             </form>
-            <div id="table" class="form-row mt-4">
-                <table border=1 style="width: 100%">
-                    <tbody>
-                        <tr>
-                            <td>{{to_translate}}</td>
-                            <td>{{result}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="col-sm">
+                <tr>
+                    <td>{{to_translate}}</td>
+                    <td>{{result}}</td>
+                </tr>
+            </table>
         </div>
     </body>
 </html>
